@@ -1,0 +1,45 @@
+/*
+Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
+
+For example, this binary tree [1,2,2,3,4,4,3] is symmetric:
+
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+*/
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public bool IsSymmetric(TreeNode root) {
+        
+     return TestSymetry(root,root);
+         
+        
+    }
+    
+    public static bool TestSymetry(TreeNode root1, TreeNode root2)
+    {
+        
+        if(root1 == null && root2 == null)
+            return true;
+        
+        if(root1 == null || root2 == null)
+            return false;
+        
+        if(!(   TestSymetry(root1.right,root2.left) && 
+                TestSymetry(root1.left,root2.right) &&
+                root1.val == root2.val))
+            return false;
+        
+        return true;
+    }
+}
