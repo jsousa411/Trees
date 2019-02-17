@@ -43,3 +43,58 @@ public class Solution {
         return true;
     }
 }
+
+/*
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public bool IsSymmetric(TreeNode root) {
+        
+     return TestSymetry(root,root);
+         
+        
+    }
+    
+    public static bool TestSymetry(TreeNode root1, TreeNode root2)
+    {
+        Queue<TreeNode> QNodes = new Queue<TreeNode>();
+        
+        QNodes.Enqueue(root1);
+        QNodes.Enqueue(root2);
+        
+        while(QNodes.Count > 0)
+        {
+            
+            TreeNode T1 = QNodes.Dequeue(),
+                     T2 = QNodes.Dequeue();
+            
+            if(T1 == null && T2 == null)
+                continue;
+            if(T1 == null || T2 == null)
+                return false;
+            
+            if  (T1.val != T2.val)
+                return false;
+            
+            QNodes.Enqueue(T1.left);
+            QNodes.Enqueue(T2.right);
+            QNodes.Enqueue(T1.right);
+            QNodes.Enqueue(T2.left);
+
+        }
+        
+        return true;
+        
+    }
+}
+
+//Iterative solution with Queue
+//Complexity of O(n) run time and O(n) extra space for Queue
+*/
